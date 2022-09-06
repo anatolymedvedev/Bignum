@@ -435,12 +435,24 @@ int main()
     // cout << endl;
 
 
-    Bignum strong_prime = strong_prime.gen_strong(5);
-    // std::cout << "Generated strong prime: " << strong_prime << std::endl;
-    std::cout << "Generated strong prime: ";
-    strong_prime.print();
-    cout << endl;
-    std::cout << (strong_prime.solovay_strassen(100) == 1 ? "Prime number to Solovay" : "Composite number to Solovay") << std::endl;
+    // Bignum strong_prime = strong_prime.gen_strong(5);
+    // // std::cout << "Generated strong prime: " << strong_prime << std::endl;
+    // std::cout << "Generated strong prime: ";
+    // strong_prime.print();
+    // cout << endl;
+    // std::cout << (strong_prime.solovay_strassen(100) == 1 ? "Prime number to Solovay" : "Composite number to Solovay") << std::endl;
+
+    for (int i = 0; i < 10; i++)
+    {
+        Bignum num(3, 3);
+        num.print();
+        cout << endl;
+        Bignum res = res.sqrt_num(num);
+        res.print();
+        cout << endl;
+        Bignum kek = res.fast_sq();
+        cout << (kek <= num) << endl;
+    }
 
     return 0;
 }
