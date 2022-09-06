@@ -1128,3 +1128,23 @@ Bignum Bignum::gen_strong(size_t len)
 
     return p;
 }
+
+Bignum Bignum::sqrt_num(Bignum num)
+{
+    Bignum x = num / 2;
+    Bignum x0;
+    do
+    {
+        x0 = x;
+        x = (((num / x) + x) / 2);
+    } 
+    while (x < x0);
+
+    return x0;
+}
+
+Bignum Bignum::trial_div(Bignum num)
+{
+    
+
+}
