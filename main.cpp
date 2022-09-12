@@ -442,17 +442,67 @@ int main()
     // cout << endl;
     // std::cout << (strong_prime.solovay_strassen(100) == 1 ? "Prime number to Solovay" : "Composite number to Solovay") << std::endl;
 
-    for (int i = 0; i < 10; i++)
-    {
-        Bignum num(3, 3);
-        num.print();
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     Bignum num(3, 3);
+    //     num.print();
+    //     cout << endl;
+    //     Bignum res = res.sqrt_num(num);
+    //     res.print();
+    //     cout << endl;
+    //     Bignum kek = res.fast_sq();
+    //     cout << (kek <= num) << endl;
+    // }
+
+    // Bignum num = BASE(144);
+    // Bignum res = num.trial_div(num);
+    // res.print();
+    // cout << endl;
+
+    for (size_t i = 1; i < 4; i++)
+	{
+		Bignum number(i, 3);
+        number.print();
         cout << endl;
-        Bignum res = res.sqrt_num(num);
-        res.print();
-        cout << endl;
-        Bignum kek = res.fast_sq();
-        cout << (kek <= num) << endl;
-    }
+		vector <Bignum> result;
+		number.trial_div_method(result, number);
+
+        int count = 1;
+		for (auto p : result)
+		{
+            if (count == 1)
+            {
+                p.print();
+                count++;
+                continue;
+            }
+            cout << "*";
+            p.print();
+		}
+		cout << endl;
+		cout << endl;
+	}
+
+	Bignum number;
+    number.input();
+	number.print();
+    cout << endl;
+	vector <Bignum> result;
+	number.trial_div_method(result, number);
+
+    int count = 1;
+	for (auto p : result)
+	{
+        if (count == 1)
+        {
+            p.print();
+            count++;
+            continue;
+        }
+        cout << "*";
+        p.print();
+	}
+	cout << endl;
 
     return 0;
 }
