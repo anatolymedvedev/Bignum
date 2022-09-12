@@ -1141,10 +1141,72 @@ Bignum Bignum::sqrt_num(Bignum num)
     while (x < x0);
 
     return x0;
-}
+} 
 
-Bignum Bignum::trial_div(Bignum num)
+void Bignum::trial_div_method(vector <Bignum> &p, Bignum n)
 {
-    
+    Bignum one = BASE(1);
+    Bignum two = BASE(2);
+    Bignum three = BASE(3);
+    Bignum six = BASE(6);
 
+    p.push_back(one);
+
+    if (n == one)
+    {
+        return;
+    }
+    if (n == two)
+    {
+        p.push_back(two);
+        return;
+    }
+    if (n == three)
+    {
+        p.push_back(three);
+        return;
+    }
+
+    while (n % two == 0)
+    {
+        p.push_back(two);
+        n = n / two;
+    }
+
+    if (n.solovay_strassen(100))
+    {
+        p.push_back(n);
+        return;
+    }
+
+    Bignum d1 = BASE(3); 
+    Bignum d2 = BASE(5);
+    Bignum d3 = BASE(7);
+
+    while (n != one)
+    {
+        Bignum r;
+        r = n % d1;
+        if (r == 0)
+        {
+            p.push_back(d1);
+            n = n / d1;
+            continue;
+        }
+        Bignum q;
+        q = n / d1;
+        if (q > d1)
+        {
+            d1 = d2;
+            d2 = d3;
+            d3 = d1 + six;
+        }
+        else
+        {
+            p.push_back(n);
+            return;
+        }
+    }
+
+    return;
 }
