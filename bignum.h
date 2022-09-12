@@ -82,6 +82,9 @@ public:
     bool ferma_test(size_t t = 100);
     bool solovay_strassen(size_t rounds);
     Bignum gen_strong(size_t half_size);
+    Bignum sqrt_num(Bignum num);
+    Bignum trial_div(Bignum num);
+    void trial_div_method(vector <Bignum> &p, Bignum n);
 };
 
 #endif
