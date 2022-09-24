@@ -454,55 +454,72 @@ int main()
     //     cout << (kek <= num) << endl;
     // }
 
-    // Bignum num = BASE(144);
-    // Bignum res = num.trial_div(num);
-    // res.print();
+    ////test_trial_div_method
+    // for (size_t i = 1; i < 4; i++)
+	// {
+	// 	Bignum number(i, 3);
+    //     number.print();
+    //     cout << endl;
+	// 	vector <Bignum> result;
+	// 	number.trial_div_method(result, number);
+
+    //     int count = 1;
+	// 	for (auto p : result)
+	// 	{
+    //         if (count == 1)
+    //         {
+    //             p.print();
+    //             count++;
+    //             continue;
+    //         }
+    //         cout << "*";
+    //         p.print();
+	// 	}
+	// 	cout << endl;
+	// 	cout << endl;
+	// }
+
+	// Bignum number;
+    // number.input();
+	// number.print();
     // cout << endl;
+	// vector <Bignum> result;
+	// number.trial_div_method(result, number);
 
-    for (size_t i = 1; i < 4; i++)
-	{
-		Bignum number(i, 3);
-        number.print();
-        cout << endl;
-		vector <Bignum> result;
-		number.trial_div_method(result, number);
+    // int count = 1;
+	// for (auto p : result)
+	// {
+    //     if (count == 1)
+    //     {
+    //         p.print();
+    //         count++;
+    //         continue;
+    //     }
+    //     cout << "*";
+    //     p.print();
+	// }
+	// cout << endl;
 
-        int count = 1;
-		for (auto p : result)
-		{
-            if (count == 1)
-            {
-                p.print();
-                count++;
-                continue;
-            }
-            cout << "*";
-            p.print();
-		}
-		cout << endl;
-		cout << endl;
-	}
+    ////test_alway
+    // Bignum number;
+    // number.input();
+	// number.print();
+    // cout << endl;
+    // Bignum res = res.alway(number);
+    // res.print();
+    // cout << " = res" << endl;
 
-	Bignum number;
+    ////test_method_ferma
+    Bignum number;
     number.input();
-	number.print();
-    cout << endl;
-	vector <Bignum> result;
-	number.trial_div_method(result, number);
-
-    int count = 1;
-	for (auto p : result)
-	{
-        if (count == 1)
-        {
-            p.print();
-            count++;
-            continue;
-        }
-        cout << "*";
-        p.print();
-	}
-	cout << endl;
-
+    pair <Bignum, Bignum> res;
+    // number.print();
+    // cout << " = ";
+	number.method_ferma(res, number);
+    // res.first.print();
+    // cout << " * ";
+    // res.second.print();
+    // cout << endl;
+    
     return 0;
 }
