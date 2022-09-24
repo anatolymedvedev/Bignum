@@ -1210,3 +1210,146 @@ void Bignum::trial_div_method(vector <Bignum> &p, Bignum n)
 
     return;
 }
+
+Bignum Bignum::alway(Bignum n)
+{
+    Bignum two = BASE(2);
+    while (n % two == 0)
+    {
+        n = n / two;
+    }
+    
+    Bignum d = sqrt_num(n);
+    d = (sqrt_num(d) * BASE(2)) + 9;
+    d.print();
+    cout << " = d" << endl;
+    
+    Bignum r1;
+    r1 = n % d;
+    // r1.print();
+    // cout << endl;
+    Bignum r2;
+    Bignum m = (d - 2);
+    r2 = n % m;
+    // r2.print();
+    // cout << endl;
+    Bignum q = ((n / m) - (n / d)) * BASE(4);
+    // q.print();
+    // cout << endl;
+    Bignum s = sqrt_num(n);
+    s.print();
+    cout << " = s" << endl;
+    while (r1 != 0)
+    {
+        d = d + 2;
+        d.print();
+        cout << " = d" << endl;
+        if (d > s)
+        {
+            cout << "no divider" << endl;
+            return 0;
+        }
+
+        Bignum r;
+        if ((r1 * 2) >= r2)
+        {
+            r = ((r1 * 2) - r2 + q);
+            r.print();
+            cout << " = r" <<endl;
+            r2 = r1;
+            r2.print();
+            cout << " = r2" << endl;
+            r1 = r;
+            r1.print();
+            cout << " = r1" << endl;
+        }
+        if ((r1 * 2) < r2)
+        {
+            r = ((q + d) - (r2 - (r1 * 2)));
+            r.print();
+            cout << " = r" <<endl;
+            r2 = r1;
+            r2.print();
+            cout << " = r2" << endl;
+            r1 = r;
+            r1.print();
+            cout << " = r1" << endl;
+            q = q + 4;
+            q.print();
+            cout << " = q if" << endl;
+        }
+        // r = ((r1 * 2) - r2 + q);
+        // r.print();
+        // cout << " = r" <<endl;
+        // r2 = r1;
+        // r2.print();
+        // cout << " = r2" << endl;
+        // r1 = r;
+        // r1.print();
+        // cout << " = r1" << endl;
+        if (r1 < 0)
+        {
+            r1 = r1 + d;
+            r1.print();
+            cout << " = r1 if" << endl;
+            q = q + 4;
+            q.print();
+            cout << " = q if" << endl;
+        }
+
+        while (r1 >= d)
+        {
+            r1 = r1 - d;
+            r1.print();
+            cout << " = r1 wh" << endl;
+            q = q - 4;
+            q.print();
+            cout << " = q wh" << endl;
+        }
+    }
+
+    return d;
+}
+
+void Bignum::method_ferma(pair<Bignum, Bignum> res, Bignum num)
+{
+    Bignum two = BASE(2);
+    while (num % two == 0)
+    {
+        num = num / two;
+    }
+
+    Bignum x = sqrt_num(num);
+    if (x.fast_sq() == num)
+    {
+        res.first = res.second = x;
+        res.first.print();
+        cout << " * ";
+        res.second.print();
+        cout << endl;
+        return;
+    }
+    
+    Bignum y;
+    Bignum z;
+    do
+    {
+        x = x + 1;
+        if (x == ((num + 1) / 2))
+        {
+            cout << "num - prime" << endl;
+            return;
+        }
+        z = x.fast_sq() - num;
+        y = sqrt_num(z);
+    } while (y.fast_sq() != z);
+    
+    res.first = x + y;
+    res.first.print();
+    cout << " * ";
+    res.second = x - y;
+    res.second.print();
+    cout << endl;
+
+    return;
+}
