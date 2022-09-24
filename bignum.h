@@ -85,6 +85,8 @@ public:
     Bignum sqrt_num(Bignum num);
     Bignum trial_div(Bignum num);
     void trial_div_method(vector <Bignum> &p, Bignum n);
+    Bignum alway(Bignum n);
+    void method_ferma(pair<Bignum, Bignum> res, Bignum num);
 };
 
 #endif
