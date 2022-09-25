@@ -442,6 +442,7 @@ int main()
     // cout << endl;
     // std::cout << (strong_prime.solovay_strassen(100) == 1 ? "Prime number to Solovay" : "Composite number to Solovay") << std::endl;
 
+    ////test sqrt_num
     // for (int i = 0; i < 10; i++)
     // {
     //     Bignum num(3, 3);
@@ -453,6 +454,10 @@ int main()
     //     Bignum kek = res.fast_sq();
     //     cout << (kek <= num) << endl;
     // }
+    // Bignum num = BASE(2);
+    // Bignum res = res.sqrt_num(num);
+    // res.print();
+    // cout << endl;
 
     ////test_trial_div_method
     // for (size_t i = 1; i < 4; i++)
@@ -500,26 +505,20 @@ int main()
 	// }
 	// cout << endl;
 
-    ////test_alway
-    // Bignum number;
-    // number.input();
-	// number.print();
-    // cout << endl;
-    // Bignum res = res.alway(number);
-    // res.print();
-    // cout << " = res" << endl;
-
-    ////test_method_ferma
+    //test_alway
     Bignum number;
     number.input();
-    pair <Bignum, Bignum> res;
-    // number.print();
-    // cout << " = ";
-	number.method_ferma(res, number);
-    // res.first.print();
-    // cout << " * ";
-    // res.second.print();
-    // cout << endl;
+	number.print();
+    cout << endl;
+    Bignum res = res.alway(number);
+    res.print();
+    cout << " = res" << endl;
+
+    ////test_method_ferma
+    // Bignum number;
+    // number.input();
+    // pair <Bignum, Bignum> res;
+	// number.method_ferma(res, number);
     
     return 0;
 }
