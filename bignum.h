@@ -87,6 +87,7 @@ public:
     void trial_div_method(vector <Bignum> &p, Bignum n);
     Bignum alway(Bignum n);
     void method_ferma(pair<Bignum, Bignum> res, Bignum num);
+    Bignum method_p_pollard(Bignum num);
 };
 
 #endif
