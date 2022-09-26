@@ -1323,3 +1323,71 @@ void Bignum::method_ferma(pair<Bignum, Bignum> res, Bignum num)
 
     return;
 }
+
+Bignum Bignum::method_p_pollard(Bignum num)
+{
+    Bignum two = BASE(2);
+    while (num % two == 0)
+    {
+        num = num / two;
+    }
+
+    Bignum a = BASE(2);
+    Bignum b = BASE(2);
+    Bignum d;
+    Bignum m;
+    Bignum n;
+    do
+    {
+        a = (a.fast_sq() + 1) % num;
+        a.print();
+        cout << " = a" << endl;
+        b = (b.fast_sq() + 1) % num;
+        b = (b.fast_sq() + 1) % num;
+        b.print();
+        cout << " = b" << endl;
+
+        if (a == b)
+        {
+            cout << "no result" << endl;
+            return 0;
+        }
+
+        if (a < b)
+        {
+            m = (b - a);
+            m.print();
+            cout << endl;
+        }
+        else
+        {
+            m = (a - b);
+            m.print();
+            cout << endl;
+        }
+        n = num;
+        n.print();
+        cout << " = n" << endl;
+        while (m != n)
+        {
+            if (m > n)
+            {
+                m = m - n;
+                m.print();
+                cout << " = m" << endl;
+            }
+            else
+            {
+                n = n - m;
+                n.print();
+                cout << " = n" << endl;
+            }
+
+            d = m;
+            d.print();
+            cout << " = d" << endl;
+        }
+    } while (d == 1);
+
+    return d;
+}
