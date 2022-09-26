@@ -505,20 +505,29 @@ int main()
 	// }
 	// cout << endl;
 
-    //test_alway
-    Bignum number;
-    number.input();
-	number.print();
-    cout << endl;
-    Bignum res = res.alway(number);
-    res.print();
-    cout << " = res" << endl;
+    // //test_alway
+    // Bignum number;
+    // number.input();
+	// number.print();
+    // cout << endl;
+    // Bignum res = res.alway(number);
+    // res.print();
+    // cout << " = res" << endl;
 
     ////test_method_ferma
     // Bignum number;
     // number.input();
     // pair <Bignum, Bignum> res;
 	// number.method_ferma(res, number);
+
+    //test_method_p_pollard
+    Bignum number;
+    number.input();
+	number.print();
+    cout << endl;
+    Bignum res = res.method_p_pollard(number);
+    res.print();
+    cout << " = res" << endl;
     
     return 0;
 }
