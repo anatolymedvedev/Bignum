@@ -1,4 +1,4 @@
-#include "Bignum.h"
+#include "bignum.h"
 
 using namespace std;
 
@@ -50,7 +50,7 @@ Bignum:: Bignum(int max_len_, int key)
 
 void Bignum::len_norm()
 {
-    len = max_len;
+    // len = max_len;
     while ((len > 1) && (coef[len - 1] == 0))
         len--;
 }
@@ -1303,8 +1303,6 @@ void Bignum::method_ferma(pair<Bignum, Bignum> res, Bignum num)
     do
     {
         x = x + 1;
-        x.print();
-        cout << endl;
         if (x == ((num + 1) / 2))
         {
             cout << "num - prime" << endl;
@@ -1340,12 +1338,8 @@ Bignum Bignum::method_p_pollard(Bignum num)
     do
     {
         a = (a.fast_sq() + 1) % num;
-        a.print();
-        cout << " = a" << endl;
         b = (b.fast_sq() + 1) % num;
         b = (b.fast_sq() + 1) % num;
-        b.print();
-        cout << " = b" << endl;
 
         if (a == b)
         {
@@ -1356,36 +1350,25 @@ Bignum Bignum::method_p_pollard(Bignum num)
         if (a < b)
         {
             m = (b - a);
-            m.print();
-            cout << endl;
         }
         else
         {
             m = (a - b);
-            m.print();
-            cout << endl;
         }
+
         n = num;
-        n.print();
-        cout << " = n" << endl;
         while (m != n)
         {
             if (m > n)
             {
                 m = m - n;
-                m.print();
-                cout << " = m" << endl;
             }
             else
             {
                 n = n - m;
-                n.print();
-                cout << " = n" << endl;
             }
 
             d = m;
-            d.print();
-            cout << " = d" << endl;
         }
     } while (d == 1);
 
