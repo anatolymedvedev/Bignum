@@ -1,4 +1,4 @@
-#include "Bignum.h"
+#include "bignum.h"
 #include <chrono>
 #include <iostream>
 #include <random>
@@ -514,20 +514,20 @@ int main()
     // res.print();
     // cout << " = res" << endl;
 
-    ////test_method_ferma
-    // Bignum number;
-    // number.input();
-    // pair <Bignum, Bignum> res;
-	// number.method_ferma(res, number);
-
-    //test_method_p_pollard
+    //test_method_ferma
     Bignum number;
     number.input();
-	number.print();
-    cout << endl;
-    Bignum res = res.method_p_pollard(number);
-    res.print();
-    cout << " = res" << endl;
+    pair <Bignum, Bignum> res;
+	number.method_ferma(res, number);
+
+    // //test_method_p_pollard
+    // Bignum number;
+    // number.input();
+	// number.print();
+    // cout << endl;
+    // Bignum res = res.method_p_pollard(number);
+    // res.print();
+    // cout << " = res" << endl;
     
     return 0;
 }
