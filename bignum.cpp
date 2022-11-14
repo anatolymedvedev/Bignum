@@ -102,7 +102,7 @@ Bignum:: ~Bignum()
     } 
 }
 
-bool Bignum:: operator==(const Bignum &other)
+bool Bignum:: operator==(const Bignum &other) const
 {
     if (len != other.len)
         return false;
@@ -121,7 +121,7 @@ bool Bignum:: operator!=(const Bignum &other)
     return !(*this == other);
 }
 
-bool Bignum:: operator>(const Bignum &other)
+bool Bignum:: operator>(const Bignum &other) const
 {
     if (len > other.len)
         return true;
@@ -140,7 +140,7 @@ bool Bignum:: operator>(const Bignum &other)
     return false;
 }
 
-bool Bignum:: operator<(const Bignum &other)
+bool Bignum:: operator<(const Bignum &other) const
 {
     if (len > other.len)
         return false;
@@ -1279,7 +1279,7 @@ Bignum Bignum::alway(Bignum n)
     return d;
 }
 
-void Bignum::method_ferma(pair<Bignum, Bignum> res, Bignum num)
+void Bignum::method_ferma(pair<Bignum, Bignum> &res, Bignum num)
 {
     Bignum two = BASE(2);
     while (num % two == 0)
@@ -1373,4 +1373,76 @@ Bignum Bignum::method_p_pollard(Bignum num)
     } while (d == 1);
 
     return d;
+}
+
+Bignum Bignum::Gelfond(Bignum g, Bignum n, Bignum a)
+{
+    Bignum p = n + 1;
+    Bignum h = sqrt_num(n) + 1;
+    Bignum b = g.pow_m(h, p);
+
+    map <Bignum, Bignum> table;
+    for (Bignum u = 1; u <= h; u = u + 1)
+    {
+        Bignum tmp = b.pow_m(u, p);
+        table[tmp] = u;
+    }
+
+    map <Bignum, Bignum> :: iterator it = table.begin();
+    // for (int i = 0; it != table.end(); it++, i++) 
+    // {  
+    //     cout << i << ") Key ";
+    //     Bignum temp1 = it->first;
+    //     temp1.print();
+    //     cout << ", value ";
+    //     Bignum temp2 = it->second;
+    //     temp2.print();
+    //     cout << endl;
+    // }
+    // it = table.begin();
+    map <Bignum, Bignum> :: iterator iter = table.end();
+    long long l = 1;
+    long long r = table.size();
+    long long m = 0;
+    Bignum temp = (a * g) % p;
+    Bignum v = 1;
+
+    while (v < h)
+    {
+        while (l < r - 1)
+        {
+            m = (l + r) / 2;
+            it = table.begin();
+            advance(it, m);
+            // Bignum mid = it->first;
+            // mid.print();
+            // cout << " = mid" << endl;
+            if (it->first < temp)
+            {
+                l = m;
+            }
+            else
+            {
+                r = m;
+            }
+        }
+        it = table.begin();
+        advance(it, r);
+        if (it->first == temp)
+        {
+            break;
+        }
+        l = 0;
+        r = table.size();
+        temp = (g * temp) % p;
+        v = v + 1;
+    }
+    
+    // Bignum coincidence = it->first;
+    // coincidence.print();
+    // cout << " - coincidence" << endl;
+    Bignum u = it->second;
+    Bignum x = ((h * u) - v) % n;
+
+    return x;
 }
