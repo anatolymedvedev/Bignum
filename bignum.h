@@ -10,6 +10,7 @@
 #include <cstring>
 #include <algorithm>
 #include <sstream>
+#include <map>
 
 using namespace std;
 
@@ -41,10 +42,10 @@ public:
     Bignum(BASE );//                                    +
     Bignum& operator=(const BASE&); 
 
-    bool operator==(const Bignum&);//+
+    bool operator==(const Bignum&) const;//+
     bool operator!=(const Bignum&);//+
-    bool operator>(const Bignum&);// +
-    bool operator<(const Bignum&);// +
+    bool operator>(const Bignum&) const;// +
+    bool operator<(const Bignum&) const;// +
     bool operator>=(const Bignum&);//+
     bool operator<=(const Bignum&);//+
 
@@ -86,8 +87,9 @@ public:
     Bignum trial_div(Bignum num);
     void trial_div_method(vector <Bignum> &p, Bignum n);
     Bignum alway(Bignum n);
-    void method_ferma(pair<Bignum, Bignum> res, Bignum num);
+    void method_ferma(pair<Bignum, Bignum> &res, Bignum num);
     Bignum method_p_pollard(Bignum num);
+    Bignum Gelfond(Bignum g, Bignum n, Bignum a);
 };
 
 #endif
