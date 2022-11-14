@@ -515,12 +515,12 @@ int main()
     // cout << " = res" << endl;
 
     //test_method_ferma
-    Bignum number;
-    number.input();
-    pair <Bignum, Bignum> res;
-	number.method_ferma(res, number);
+    // Bignum number;
+    // number.input();
+    // pair <Bignum, Bignum> res;
+	// number.method_ferma(res, number);
 
-    // //test_method_p_pollard
+    // // test_method_p_pollard
     // Bignum number;
     // number.input();
 	// number.print();
@@ -528,6 +528,17 @@ int main()
     // Bignum res = res.method_p_pollard(number);
     // res.print();
     // cout << " = res" << endl;
-    
+
+    // test alg_Gelfond
+    Bignum g;
+    g.input();
+    Bignum number;
+    number.input();
+    Bignum a;
+    a.input();
+    Bignum res = res.Gelfond(g, number, a);
+    res.print();
+    cout << " = x" << endl;
+
     return 0;
 }
