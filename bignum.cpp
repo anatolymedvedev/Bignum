@@ -1446,3 +1446,134 @@ Bignum Bignum::Gelfond(Bignum g, Bignum n, Bignum a)
 
     return x;
 }
+
+Bignum Bignum::p_pollard_log(Bignum g, Bignum n, Bignum a)
+{
+    Bignum p = n + 1;
+    Bignum x1 = 1;
+    Bignum x2 = 1;
+    Bignum u1 = 0;
+    Bignum u2 = 0;
+    Bignum v1 = 0;
+    Bignum v2 = 0;
+    do
+    {
+        Bignum x = x1;
+        Bignum u = u1;
+        Bignum v = v1;
+        if(x % 3 == 1)
+        {
+            x1 = (a * x) % p;
+            u1 = u;       
+            v1 = (v + 1) % n;
+        }
+        if(x % 3 == 2)
+        {
+            x1 = (x.fast_sq()) % p;
+            u1 = (Bignum(2) * u) % n;
+            v1 = (Bignum(2) * v) % n;
+        }
+        if(x % 3 == 0)
+        {
+            x1 = (g * x) % p;
+            u1 = (u + 1) % n;
+            v1 = v;
+        }
+
+        //x2, u2, v2
+        for(int i = 0; i < 2; i++)
+        {
+            Bignum x_2 = x2;
+            Bignum u_2 = u2;
+            Bignum v_2 = v2;
+            if(x_2 % 3 == 1)
+            {
+                x2 = (a * x_2) % p;
+                u2 = u_2;          
+                v2 = (v_2 + 1) % n;
+            }
+            if(x_2 % 3 == 2)
+            {
+                x2 = (x_2.fast_sq()) % p;
+                u2 = (Bignum(2) * u_2) % n;
+                v2 = (Bignum(2) * v_2) % n;
+            }
+            if(x_2 % 3 == 0)
+            {
+                x2 = (g * x_2) % p;
+                u2 = (u_2 + 1) % n;
+                v2 = v_2;
+            }
+        }
+    } while (x1 != x2);
+    
+    Bignum r = 0;
+    if (v1 < v2)
+    {
+        r = ((n + v1) - v2) % n;
+    }
+    else
+    {
+        r = (v1 - v2) % n;
+    }
+    
+    if (r == 0)
+    {
+        cout << "no result" << endl;
+        return 0;
+    }
+
+    Bignum d = 0;
+    Bignum num = n;
+    Bignum rr = r;
+    while (rr != num)
+    {
+        if (rr > num)
+        {
+            rr = rr - num;
+        }
+        else
+        {
+            num = num - rr;
+        }
+
+        d = rr;
+    }
+
+    r = r / d;
+    Bignum cur = r;
+    int ord = 0;
+    num = n / d;
+    while (cur != Bignum(1))
+    {
+        cur = (cur * r) % num;
+        ord++;
+    }
+
+    Bignum x = 0;
+    if (u2 < u1)
+    {
+        x = (((n + u2 - u1) / d) * r.pow_m(ord, num)) % num;
+    }
+    else
+    {
+        x = (((u2 - u1) / d) * r.pow_m(ord, num)) % num;
+    }
+
+    if (g.pow_m(x, p) == a)
+    {
+        return x;
+    }   
+
+    Bignum x0 = x;
+    for (Bignum k = 1; k < d; k = k + 1)
+    {
+        x = (x0 + num * k) % n;
+        if (g.pow_m(x, p) == a)
+        {
+           return x; 
+        }
+    }
+
+    return 0;
+}
