@@ -530,15 +530,29 @@ int main()
     // cout << " = res" << endl;
 
     // test alg_Gelfond
+    // Bignum g;
+    // g.input();
+    // Bignum number;
+    // number.input();
+    // Bignum a;
+    // a.input();
+    // Bignum res = res.Gelfond(g, number, a);
+    // res.print();
+    // cout << " = x" << endl;
+
+    // test p_pollard_log
     Bignum g;
     g.input();
     Bignum number;
     number.input();
     Bignum a;
     a.input();
-    Bignum res = res.Gelfond(g, number, a);
+    Bignum res = res.p_pollard_log(g, number, a);
     res.print();
-    cout << " = x" << endl;
+    cout << " = p_pollard" << endl;
+    // Bignum res1 = res1.Gelfond(g, number, a);
+    // res1.print();
+    // cout << " = gelfond" << endl;
 
     return 0;
 }
