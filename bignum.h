@@ -90,6 +90,7 @@ public:
     void method_ferma(pair<Bignum, Bignum> &res, Bignum num);
     Bignum method_p_pollard(Bignum num);
     Bignum Gelfond(Bignum g, Bignum n, Bignum a);
+    Bignum p_pollard_log(Bignum g, Bignum n, Bignum a);
 };
 
 #endif
